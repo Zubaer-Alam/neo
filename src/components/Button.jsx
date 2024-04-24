@@ -3,8 +3,8 @@ import React from "react";
 const Button = ({ label, onClick, width }) => {
   const widthClassMap = {
     full: "w-full",
-    "1/2": "w-1/2",
-    "1/3": "w-1/3",
+    mid: "w-1/2",
+    small: "w-auto",
   };
 
   const widthClass = widthClassMap[width] || "w-full";

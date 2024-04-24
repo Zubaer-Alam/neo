@@ -11,7 +11,7 @@ const SignUp = () => {
   }
   return (
     <>
-      <div className="max-w-[420px] mx-auto border border-green-100 shadow-sm p-5 rounded-xl mt-20">
+      <div className="max-w-[420px] mx-auto border border-green-100 shadow-sm p-5 rounded-xl mt-10">
         <div>
           <p className="text-gray-800 mb-1 text-lg font-semibold"> Sign Up</p>
           <p className="text-gray-400 mb-4 text-sm font-semibold">

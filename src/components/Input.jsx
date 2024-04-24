@@ -1,12 +1,20 @@
 import React from "react";
 
-const Input = ({ id, label, type = "text", ...rest }) => {
+const Input = ({ id, width, label, type = "text", ...rest }) => {
+  const widthClassMap = {
+    full: "w-full",
+    mid: "w-1/2",
+    small: "w-auto",
+  };
+
+  const widthClass = widthClassMap[width] || "w-full";
+
   return (
     <div className="relative">
       <input
         type={type}
         id={id}
-        className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:[#199771] focus:outline-none focus:ring-0 focus:border-[#199771] peer"
+        className={`block px-2.5 pb-2.5 pt-4 text-sm text-gray-900 bg-transparent rounded-lg border border-gray-200 appearance-none dark:text-white dark:border-gray-600 dark:focus:[#199771] focus:outline-none focus:ring-0 focus:border-[#199771] peer ${widthClass}`}
         {...rest}
       />
       <label
