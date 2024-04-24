@@ -1,0 +1,51 @@
+ [
+    {
+        "id": 1,
+      "title": "February 22, 2024",
+      "subtitle":
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium lorema doloremque laudantium, totam rem aperiam, eaque ipsa quae...",
+      "authorName":" Arino Admin",
+      "image": "images/activity_1.jpg",
+      "authorDesignation": "London, United Kindom",
+      "date": "07",
+      "month": "Mar",
+      "year": "2022"
+    },
+    {
+        "id": 2,
+      "title": "December 13, 2023",
+      "subtitle":
+       " Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium lorema doloremque laudantium, totam rem aperiam, eaque ipsa quae...",
+      "authorName": "David Milar",
+      "image": "images/activity_2.jpg",
+      "authorDesignation": "London, United Kindom",
+      "date": "17",
+      "month": "Mar",
+      "year": "2022"
+    },
+    {
+        "id": 3,
+      "title": "November 20, 2023",
+      "subtitle":
+       " Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium lorema doloremque laudantium, totam rem aperiam, eaque ipsa quae...",
+      "authorName": "Jhone Doe",
+      "image": "images/activity_3.jpg",
+      "authorDesignation": "London, United Kindom",
+      "date": "20",
+      "month": "Mar",
+      "year": "2022"
+    },
+    {
+        "id": 4,
+      "title": "November 22, 2023",
+      "subtitle":
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium lorema doloremque laudantium, totam rem aperiam, eaque ipsa quae...",
+      "authorName":" Arino Admin",
+      "image": "images/activity_4.jpg",
+      "authorDesignation": "London, United Kindom",
+      "date": "07",
+      "month": "Mar",
+      "year": "2022"
+    }
+  
+ ]
