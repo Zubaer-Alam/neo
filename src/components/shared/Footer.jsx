@@ -45,7 +45,7 @@ const Footer = () => {
           </ul>
         </nav>
         <aside className="text-center text-xs">
-          <p>&copy; 2024 FKR. All Rights Reserved.</p>
+          <p>&copy; 2024 Automatica.Software. All Rights Reserved.</p>
         </aside>
       </footer>
     </div>

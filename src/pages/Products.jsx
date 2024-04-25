@@ -5,8 +5,7 @@ import Modal1 from "../components/Modal";
 import { FaTrash } from "react-icons/fa6";
 import { useState } from "react";
 import Button from "../components/Button";
-import MultiForm from "../components/MultiForm";
-import Input from "../components/Input";
+import MultiForm from "../components/MultiForm/MultiForm";
 
 const Products = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -136,37 +135,32 @@ const Products = () => {
 
         {!isVisible && (
           <div className="">
-            <div className="justify-between flex">
-              <p className="text-[22px] text-textDeep font-bold">
-                Select a title for your product
-              </p>
-              <Button
-                width="small"
-                label="Back"
-                onClick={handleButtonClickBack}
-              />
-            </div>
-
-            <div className="flex justify-center">
+            {/* <div className="justify-center flex">
               <div>
                 <div className="mt-6">
                   <Input
-                    width="small"
+                    width="px500"
                     type="text"
                     id="title"
                     label="Title of the product"
                     placeholder=" "
                   />
                 </div>
-                <div className="mt-4">
+                <div className="flex justify-between mt-4">
                   <Button
                     width="small"
                     label="Back"
                     onClick={handleButtonClickBack}
                   />
+                  <Button
+                    width="small"
+                    label="Next"
+                    onClick={handleButtonClickBack}
+                  />
                 </div>
               </div>
-            </div>
+            </div> */}
+            <MultiForm />
           </div>
         )}
       </section>
