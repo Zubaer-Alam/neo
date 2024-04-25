@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import Title from "./Title";
 import Category from "./Category";
-import OtherInfo from "./OtherInfo";
+import Price from "./Price";
+import Description from "./Description";
 
 function MultiForm() {
   const [page, setPage] = useState(0);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName: "",
-    username: "",
-    nationality: "",
-    other: "",
+    title: "",
+    selectedOptions: "",
+    Description: "",
   });
 
   const FormTitles = [
-    "Select a title for your product",
+    "Write a title for your product",
     "Select a category for your product",
+    "Write description for your product",
     "Other",
   ];
 
@@ -27,8 +24,10 @@ function MultiForm() {
       return <Title formData={formData} setFormData={setFormData} />;
     } else if (page === 1) {
       return <Category formData={formData} setFormData={setFormData} />;
+    } else if (page === 2) {
+      return <Description formData={formData} setFormData={setFormData} />;
     } else {
-      return <OtherInfo formData={formData} setFormData={setFormData} />;
+      return <Price formData={formData} setFormData={setFormData} />;
     }
   };
 

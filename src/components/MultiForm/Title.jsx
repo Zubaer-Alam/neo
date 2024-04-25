@@ -10,9 +10,9 @@ const Title = ({ formData, setFormData }) => {
         id="title"
         label="Title of the product"
         placeholder=""
-        value={formData.email}
+        value={formData.title}
         onChange={(event) =>
-          setFormData({ ...formData, email: event.target.value })
+          setFormData({ ...formData, title: event.target.value })
         }
       />
     </div>
