@@ -1,13 +1,10 @@
 import { IoChevronForward } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import Modal from "./Modal";
 import { FaTrash } from "react-icons/fa6";
-import { useState } from "react";
-import Button from "./Button";
+
 import { AiFillEdit } from "react-icons/ai";
 
-const Products = () => {
-  const [openModal, setOpenModal] = useState(false);
+const AllProducts = () => {
 
   const products = [
     {
@@ -21,7 +18,7 @@ const Products = () => {
       views: "17177117 Views",
     },
     {
-      id: 1,
+      id: 2,
       name: "iPhone 13 Pro Max",
       categories: "Electronics",
       price: "1500$",
@@ -35,14 +32,7 @@ const Products = () => {
 
   return (
     <>
-      <div>
-        <Modal  setOpenModal={setOpenModal}         openModal={openModal}
-        title="Delete Product"
-        description="Are you sure you want to delete this product?"
-        confirmLabel="Delete"
-        cancelLabel="Cancel"
-     />
-      </div>
+     
       <section section className="lg:px-[65px] px-4">
         <ol
           className="flex items-center whitespace-nowrap font-medium md:text-base text-sm  pb-6 md:ps-0 pt-8 "
@@ -75,34 +65,23 @@ const Products = () => {
         </ol>
 
         <div className="">
-          <div className="justify-between flex">
-            <p className="text-[22px] text-textDeep font-bold">My Products</p>
-            <Link className="" to="/addProduct">
-              {" "}
-              <Button width="small" label="Add Product" />
-            </Link>
+          <div className="">
+            <p className="text-[22px] text-textDeep font-bold">All Products</p>
+          
           </div>
 
           <div className="grid grid-cols-2 gap-8">
             {products.map((product) => (
-              <div
+              <Link 
+              to={`/product/${product.id}`}
                 key={product.id} // Ensure each product has a unique key
-                className="border border-gray-200 rounded-xl mt-6 px-8 py-6"
+                className="border border-gray-200 rounded-xl mt-6 px-8 py-6 hover:shadow-xl  hover:border-teal-600 cursor-pointer"
               >
-                <div className="flex justify-between">
+                <div className="">
                   <p className="text-gray-700 text-xl font-semibold">
                     {product.name}
                   </p>
-                  <div className="flex items-center gap-3">
-                    <FaTrash
-                      className="text-gray-600 cursor-pointer"
-                      onClick={() => setOpenModal(true)}
-                    />
-
-                    <Link to="/editProduct">
-                      <AiFillEdit className="text-gray-600 cursor-pointer text-xl" />
-                    </Link>
-                  </div>
+            
                 </div>
 
                 <div className="">
@@ -126,7 +105,7 @@ const Products = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -135,4 +114,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default AllProducts;

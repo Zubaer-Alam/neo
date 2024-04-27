@@ -5,9 +5,10 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import MultiOptionSelect from "../components/MultiOptionSelect";
 import { useState } from "react";
+import Textarea from "../components/Textarea";
 const EditProduct = () => {
-    const [formData, setFormData] = useState({
-      firstName: "",
+  const [formData, setFormData] = useState({
+    firstName: "",
   });
 
   return (
@@ -44,11 +45,9 @@ const EditProduct = () => {
         </ol>
 
         <div className="">
-          <div className="justify-between flex">
-            <p className="text-[22px] text-textDeep font-bold">Edit Products</p>
-            <Link className="" to="/addProduct">
-              <Button width="small" label="Add Product" />
-            </Link>
+          <div className="">
+            <p className="text-[22px] text-textDeep font-bold">Edit Product</p>
+         
           </div>
 
           <div className="flex justify-center">
@@ -60,30 +59,47 @@ const EditProduct = () => {
                   id="title"
                   label="Title price of the product"
                   placeholder=""
-           
                 />
 
-                <MultiOptionSelect formData={formData} setFormData={setFormData} />
-                
-                <div className="flex justify-between mt-4">
+                <MultiOptionSelect
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Textarea
+                  width="px500"
+                  type="text"
+                  id="Description"
+                  label="Description of the product"
+                  placeholder=""
+                />
+                <div className="flex justify-between my-4">
                   <Input
-                    width="px350"
+                    width="full"
                     type="text"
                     id="price"
-                    label="Rent price of the product"
+                    label="Purchased price"
                     placeholder=""
-              
+                  />
+                  <Input
+                    width="full"
+                    type="text"
+                    id="price"
+                    label="Rent price"
+                    placeholder=""
                   />
 
-                  <select
-                  
-                    className="focus:outline-teal-600 border border-gray-200 rounded-lg text-gray-400 text-sm"
-                  >
-                    <option>Select Option</option>
+                  <select className="focus:outline-teal-600 border border-gray-200 rounded-lg text-gray-400 text-sm px-4">
+                    <option>Options</option>
                     <option>Hourly</option>
                     <option>Daily</option>
                   </select>
                 </div>
+
+                <Button
+                  width="full"
+                  label="Submit"
+                  onClick={() => console.log("Button clicked!")}
+                />
               </div>
             </div>
           </div>

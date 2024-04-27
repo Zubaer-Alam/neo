@@ -8,6 +8,8 @@ import Products from "../components/Products";
 import Tabs from "../components/Modal";
 import EditProduct from "../pages/EditProduct";
 import AddProduct from "../pages/AddProduct";
+import AllProducts from "../pages/AllProducts";
+import SingleProduct from "../pages/SingleProduct";
 
 const router = createBrowserRouter([
   {
@@ -26,10 +28,10 @@ const router = createBrowserRouter([
         path: "/signUp",
         element: <SignUp />,
       },
-      // {
-      //   path: "/products",
-      //   element: <Products />,
-      // },
+      {
+        path: "/allProducts",
+        element: <AllProducts />,
+      },
          {
         path: "/editProduct",
         element: <EditProduct />,
@@ -38,6 +40,13 @@ const router = createBrowserRouter([
         path: "/addProduct",
         element: <AddProduct/>,
       },
+
+      {
+        path: "/product/:id",
+        element: <SingleProduct/>,
+      },
+
+
       {
         path: "/tabs",
         element: <Tabs />,
