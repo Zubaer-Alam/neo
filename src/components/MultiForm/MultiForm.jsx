@@ -3,6 +3,7 @@ import Title from "./Title";
 import Category from "./Category";
 import Price from "./Price";
 import Description from "./Description";
+import Button from "../Button";
 
 function MultiForm() {
   const [page, setPage] = useState(0);
@@ -16,7 +17,7 @@ function MultiForm() {
     "Write a title for your product",
     "Select a category for your product",
     "Write description for your product",
-    "Other",
+    "Select a price for your product",
   ];
 
   const PageDisplay = () => {
@@ -44,9 +45,9 @@ function MultiForm() {
             {/* Progress Bar Start*/}
             <div className="progressbar w-[400px] h-2 bg-white my-4">
               <div
-                className="w-1/3 bg-teal-600 h-full"
+                className="bg-teal-600 h-full"
                 style={{
-                  width: page === 0 ? "33.3%" : page == 1 ? "66.6%" : "100%",
+                  width: `${(page + 1) * 25}%`,
                 }}
               ></div>
             </div>
@@ -65,14 +66,16 @@ function MultiForm() {
             <div>{PageDisplay()}</div>
             <div className="flex justify-between">
               <div className={`footer ${page === 0 ? "hidden" : "block"}`}>
-                <button
+                <Button
+                  width="full"
+                  label="Pr"
                   disabled={page === 0}
                   onClick={() => {
                     setPage((currPage) => currPage - 1);
                   }}
                 >
                   Prev
-                </button>
+                </Button>
               </div>
 
               <button

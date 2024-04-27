@@ -1,17 +1,45 @@
 import React from "react";
+import Input from "../Input";
+import { FaArrowAltCircleDown } from "react-icons/fa";
 
 const Price = ({ formData, setFormData }) => {
   return (
     <div>
-      <div className="other-info-container">
-        <input
+      <Input
+        width="px500"
+        type="text"
+        id="price"
+        label="Purchased price of the product"
+        placeholder=""
+        value={formData.purchasedPrice}
+        onChange={(event) =>
+          setFormData({ ...formData, purchasedPrice: event.target.value })
+        }
+      />
+      <div className="flex justify-between mt-4">
+        <Input
+          width="px350"
           type="text"
-          placeholder="Nationality..."
-          value={formData.nationality}
-          onChange={(e) => {
-            setFormData({ ...formData, nationality: e.target.value });
-          }}
+          id="price"
+          label="Rent price of the product"
+          placeholder=""
+          value={formData.rentPrice}
+          onChange={(event) =>
+            setFormData({ ...formData, rentPrice: event.target.value })
+          }
         />
+
+        <select
+          value={formData.rentPriceOption}
+          onChange={(event) =>
+            setFormData({ ...formData, rentPriceOption: event.target.value })
+          }
+          className="focus:outline-teal-600 border border-gray-200 rounded-lg text-gray-400 text-sm"
+        >
+          <option>Select Option</option>
+          <option>No</option>
+          <option>Maybe</option>
+        </select>
       </div>
     </div>
   );

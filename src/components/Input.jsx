@@ -6,6 +6,7 @@ const Input = ({ id, value, width, label, type = "text", ...rest }) => {
     mid: "w-1/2",
     small: "w-auto",
     px500: "w-[500px]",
+    px350: "w-[350px]",
   };
 
   const widthClass = widthClassMap[width] || "w-full";
