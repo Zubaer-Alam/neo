@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Button from "../components/Button";
+// import Button from "./Button";
 import Input from "../components/Input";
 import { Link } from "react-router-dom";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import Button from "../components/Button";
 
 const SignIn = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

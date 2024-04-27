@@ -4,6 +4,7 @@ import Category from "./Category";
 import Price from "./Price";
 import Description from "./Description";
 import Button from "../Button";
+import Summary from "./Summary";
 
 function MultiForm() {
   const [page, setPage] = useState(0);
@@ -18,6 +19,7 @@ function MultiForm() {
     "Select a category for your product",
     "Write description for your product",
     "Select a price for your product",
+    "Summary of your product",
   ];
 
   const PageDisplay = () => {
@@ -27,8 +29,12 @@ function MultiForm() {
       return <Category formData={formData} setFormData={setFormData} />;
     } else if (page === 2) {
       return <Description formData={formData} setFormData={setFormData} />;
-    } else {
+    } 
+    else if (page === 3) {
       return <Price formData={formData} setFormData={setFormData} />;
+    }
+    else {
+      return <Summary formData={formData} setFormData={setFormData} />;
     }
   };
 
@@ -64,11 +70,11 @@ function MultiForm() {
               </button> */}
 
             <div>{PageDisplay()}</div>
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-4">
               <div className={`footer ${page === 0 ? "hidden" : "block"}`}>
                 <Button
-                  width="full"
-                  label="Pr"
+                  width="small"
+                  label="Prev"
                   disabled={page === 0}
                   onClick={() => {
                     setPage((currPage) => currPage - 1);
@@ -78,7 +84,9 @@ function MultiForm() {
                 </Button>
               </div>
 
-              <button
+              <Button
+                width="small"
+                label={page === FormTitles.length - 1 ? "Submit" : "Next"}
                 onClick={() => {
                   if (page === FormTitles.length - 1) {
                     alert("FORM SUBMITTED");
@@ -88,8 +96,8 @@ function MultiForm() {
                   }
                 }}
               >
-                {page === FormTitles.length - 1 ? "Submit" : "Next"}
-              </button>
+                {/* {page === FormTitles.length - 1 ? "Submit" : "Next"} */}
+              </Button>
             </div>
           </div>
         </div>

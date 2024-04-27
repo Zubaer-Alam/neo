@@ -8,9 +8,10 @@ const colourOptions = [
   { value: "vanilla", label: "Vanilla" },
 ];
 
-export default function Category({ formData, setFormData }) {
+export default function MultiOptionSelect({ formData, setFormData }) {
   return (
     <Select
+    
       styles={{
         control: (baseStyles, state) => ({
           ...baseStyles,
@@ -20,6 +21,9 @@ export default function Category({ formData, setFormData }) {
           fontSize: "14px",
           color: "#A7A0BA",
           width: "500px",
+          marginTop:"16px",
+          marginBottom:"16px",
+       
         }),
       }}
       value={formData.firstName} // Assuming formData.firstName holds the selected value(s)

@@ -1,7 +1,5 @@
 import React from "react";
 import Input from "../Input";
-import { FaArrowAltCircleDown } from "react-icons/fa";
-
 const Price = ({ formData, setFormData }) => {
   return (
     <div>
@@ -37,8 +35,8 @@ const Price = ({ formData, setFormData }) => {
           className="focus:outline-teal-600 border border-gray-200 rounded-lg text-gray-400 text-sm"
         >
           <option>Select Option</option>
-          <option>No</option>
-          <option>Maybe</option>
+          <option>Hourly</option>
+          <option>Daily</option>
         </select>
       </div>
     </div>

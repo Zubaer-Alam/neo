@@ -4,8 +4,10 @@ import MainLayout from "../layouts/MainLayout";
 import HomePage from "../pages/Home";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
-import Products from "../pages/Products";
+import Products from "../components/Products";
 import Tabs from "../components/Modal";
+import EditProduct from "../pages/EditProduct";
+import AddProduct from "../pages/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -24,9 +26,17 @@ const router = createBrowserRouter([
         path: "/signUp",
         element: <SignUp />,
       },
+      // {
+      //   path: "/products",
+      //   element: <Products />,
+      // },
+         {
+        path: "/editProduct",
+        element: <EditProduct />,
+      },
       {
-        path: "/products",
-        element: <Products />,
+        path: "/addProduct",
+        element: <AddProduct/>,
       },
       {
         path: "/tabs",
