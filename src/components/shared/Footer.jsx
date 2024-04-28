@@ -14,15 +14,16 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/products" className="cursor-pointer hover:underline">
+              <Link to="/" className="cursor-pointer hover:underline">
                 Products
               </Link>
             </li>
             <li>
-              <Link to="/signIn" className="cursor-pointer hover:underline">
-                Sign In
+              <Link to="/profile" className="cursor-pointer hover:underline">
+                Profile
               </Link>
             </li>
+            
           </ul>
         </nav>
         <nav className="text-lg">

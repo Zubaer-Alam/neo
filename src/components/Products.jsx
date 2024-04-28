@@ -21,7 +21,28 @@ const Products = () => {
       views: "17177117 Views",
     },
     {
-      id: 1,
+      id: 2,
+      name: "iPhone 13 Pro Max",
+      categories: "Electronics",
+      price: "1500$",
+      description:
+        "Latest iphone 13 max. Bought from the Apple store. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae",
+      datePosted: "21st Sept 2021",
+      views: "17177117 Views",
+    },
+
+    {
+      id: 3,
+      name: "iPhone 13 Pro Max",
+      categories: "Electronics",
+      price: "1500$",
+      description:
+        "Latest iphone 13 max. Bought from the Apple store. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae",
+      datePosted: "21st Sept 2021",
+      views: "17177117 Views",
+    },
+    {
+      id: 4,
       name: "iPhone 13 Pro Max",
       categories: "Electronics",
       price: "1500$",
@@ -79,18 +100,24 @@ const Products = () => {
             <p className="text-[22px] text-textDeep font-bold">My Products</p>
             <Link className="" to="/addProduct">
               {" "}
-              <Button width="small" label="Add Product" />
+              <Button label="Add Product"   
+                      textColor="white"
+                      bgColor="teal-600"
+                      width="small"
+                      focusColor="gray-100"
+                      hoverColor="teal-900"
+                      borderColor="" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
             {products.map((product) => (
               <div
                 key={product.id} // Ensure each product has a unique key
-                className="border border-gray-200 rounded-xl mt-6 px-8 py-6"
+                className="border border-gray-200 rounded-xl mt-6 md:px-8 px-4 py-6"
               >
                 <div className="flex justify-between">
-                  <p className="text-gray-700 text-xl font-semibold">
+                  <p className="text-gray-700 md:text-xl text-lg font-semibold">
                     {product.name}
                   </p>
                   <div className="flex items-center gap-3">
@@ -116,11 +143,11 @@ const Products = () => {
                       </div>
                     </div>
 
-                    <p className="text-gray-700 line-clamp-3 w-[500px]">
+                    <p className="text-gray-700 md:text-base text-sm line-clamp-3">
                       {product.description}
                     </p>
 
-                    <div className="flex justify-between text-sm pt-2">
+                    <div className="flex justify-between md:text-sm text-xs pt-2">
                       <p>Date posted: {product.datePosted}</p>
                       <p>{product.views}</p>
                     </div>

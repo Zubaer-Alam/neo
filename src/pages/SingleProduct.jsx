@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { IoChevronForward } from "react-icons/io5";
 import { useParams, Link } from "react-router-dom";
 import Button from "../components/Button";
+import Modal from "../components/Modal";
 
 function SingleProduct() {
+  const [openModal, setOpenModal] = useState(false);
+  const [openModal2, setOpenModal2] = useState(false);
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -20,7 +23,44 @@ function SingleProduct() {
     return <div>Loading...</div>;
   }
 
+
+  const [inputValues, setInputValues] = useState({});
+
+  const handleConfirm = () => {
+    // Handle confirmation action with inputValues
+    console.log('Confirmed with input values:', inputValues);
+    // Reset input values and close modal
+    setInputValues({});
+    setOpenModal(false);
+  };
+  const inputLabels = ['From', 'To']; // Labels corresponding to input fields
+
+  const inputFields = [
+    { name: 'field1', placeholder: 'Enter Field 1' },
+    { name: 'field2', placeholder: 'Enter Field 2' },
+  ];
   return (
+    <>  
+
+
+<Modal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        title="Rent Product"
+        description="Are you sure you want to rent this product?"
+        confirmLabel="Yes"
+        cancelLabel="Cancel"
+        onConfirm={handleConfirm}
+        inputLabels={inputLabels} 
+        inputFields={inputFields} // Pass input fields array to the modal
+      />
+
+<Modal  setOpenModal={setOpenModal2}    openModal={openModal2}
+        title="Buy Product"
+        description="Are you sure you want to buy this product?"
+        confirmLabel="Yes"
+        cancelLabel="Cancel"
+     />
     <section section className="lg:px-[65px] px-4">
       <ol
         className="flex items-center whitespace-nowrap font-medium md:text-base text-sm  pb-6 md:ps-0 pt-8 "
@@ -92,15 +132,20 @@ function SingleProduct() {
 
 <div className="flex gap-4 items-center justify-end mt-4">
 <Button          label="Rent"
-                      onClick={() => setOpenModal(false)}
+                      onClick={() => setOpenModal(true)}
                       textColor="white"
                       bgColor="teal-600"
                       width="small"
                       focusColor="gray-100"
                       hoverColor="green-600"
                       borderColor="green-700"/>
+
+
+
+
+
                                 <Button          label="Buy"
-                      onClick={() => setOpenModal(false)}
+                      onClick={() => setOpenModal2(true)}
                       textColor="white"
                       bgColor="teal-600"
                       width="small"
@@ -112,7 +157,7 @@ function SingleProduct() {
 
  
       </div>
-    </section>
+    </section> </>
   );
 }
 
