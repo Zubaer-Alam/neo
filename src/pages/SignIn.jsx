@@ -1,17 +1,52 @@
 import React, { useState } from "react";
-// import Button from "./Button";
 import Input from "../components/Input";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import Button from "../components/Button";
+import { Toaster, toast } from 'react-hot-toast';
 
 const SignIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSignIn = async () => {
+    try {
+      const response = await fetch('http://162.0.237.97:3000/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Sign In failed');
+      }
+
+      const data = await response.json();
+      const token = data.token;
+      localStorage.setItem('token', token);
+      toast.success('Sign In successful');
+      setEmail('');
+      setPassword('');
+      navigate('/');
+  
+    } catch (error) {
+      toast.error('Incorrect email or password');
+  
+    }
+  };
+
+
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   function togglePasswordVisibility() {
     setIsPasswordVisible((prevState) => !prevState);
   }
   return (
     <>
+     <Toaster />
       <div className="max-w-[420px] mx-auto border border-green-100 shadow-sm p-5 rounded-xl mt-10">
         <div>
           <p className="text-gray-800 mb-1 text-lg font-semibold"> Sign In</p>
@@ -22,7 +57,12 @@ const SignIn = () => {
         </div>
 
         <form className="space-y-4">
-          <Input id="email" label="Email" placeholder=" " />
+          <Input 
+          id="email"
+          label="Email" 
+          placeholder=" "
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} />
 
           <div className="relative">
             <Input
@@ -30,6 +70,8 @@ const SignIn = () => {
               id="pass"
               label="Password"
               placeholder=" "
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} 
             />
           </div>
         </form>
@@ -48,9 +90,15 @@ const SignIn = () => {
           <Button
             width="full"
             label="Sign In"
-            onClick={() => console.log("Button clicked!")}
+            textColor="white"
+            bgColor="teal-600"
+            focusColor="gray-100"
+            hoverColor="teal-900"
+            borderColor=""
+            onClick={handleSignIn}
           />
         </div>
+ 
         <p className="text-xs mt-3 text-gray-800">
           Not a member yet?{" "}
           <Link to="/signUp" className="text-[#199771]">
