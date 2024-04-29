@@ -5,38 +5,38 @@ const Price = ({ formData, setFormData }) => {
     <div>
       <Input
         width="px500"
-        type="text"
+        type="number"
         id="price"
-        label="Purchased price of the product"
+        label="Selling price of the product"
         placeholder=""
-        value={formData.purchasedPrice}
+        value={formData.price}
         onChange={(event) =>
-          setFormData({ ...formData, purchasedPrice: event.target.value })
+          setFormData({ ...formData, price: event.target.value })
         }
       />
       <div className="flex justify-between mt-4">
         <Input
           width="px350"
-          type="text"
+          type="number"
           id="price"
           label="Rent price of the product"
           placeholder=""
-          value={formData.rentPrice}
+          value={formData.rent}
           onChange={(event) =>
-            setFormData({ ...formData, rentPrice: event.target.value })
+            setFormData({ ...formData, rent: event.target.value })
           }
         />
 
         <select
-          value={formData.rentPriceOption}
+          value={formData.rent_interval}
           onChange={(event) =>
-            setFormData({ ...formData, rentPriceOption: event.target.value })
+            setFormData({ ...formData, rent_interval: event.target.value })
           }
           className="focus:outline-teal-600 border border-gray-200 rounded-lg text-gray-400 text-sm"
         >
           <option>Select Option</option>
-          <option>Hourly</option>
-          <option>Daily</option>
+          <option value="hourly">Hourly</option>
+          <option value="daily">Daily</option>
         </select>
       </div>
     </div>

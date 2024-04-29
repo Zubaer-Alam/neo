@@ -26,7 +26,10 @@ const SignIn = () => {
       }
 
       const data = await response.json();
-      const token = data.token;
+      const token = JSON.stringify(data.token);
+      const userId = JSON.stringify(data.userId);
+      
+      localStorage.setItem('userId', userId);
       localStorage.setItem('token', token);
       toast.success('Sign In successful');
       setEmail('');

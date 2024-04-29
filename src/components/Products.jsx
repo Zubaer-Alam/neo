@@ -1,58 +1,98 @@
+// import { IoChevronForward } from "react-icons/io5";
+// import { Link, useNavigate } from "react-router-dom";
+// import Modal from "./Modal";
+// import { FaTrash } from "react-icons/fa6";
+// import { useContext, useEffect, useState } from "react";
+// import Button from "./Button";
+// import { AiFillEdit } from "react-icons/ai";
+// import { AuthContext } from "../provider/AuthProvider";
+// const Products = () => {
+//   const [openModal, setOpenModal] = useState(false);
+//   const { userIdData } = useContext(AuthContext);
+//   console.log(userIdData)
+//   useEffect(() => {
+//     const getMyProductData = async () => {
+//       try {
+//         const response = await fetch(`http://162.0.237.97:3000/products/users/${userIdData}`, {
+//           method: 'GET',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//         });
+  
+//         if (!response.ok) {
+//           throw new Error('Sign In failed');
+//         }
+  
+//         // If response is successful, you might want to handle the data here
+//         const data = await response.json();
+//         console.log(data); // Logging the data for further processing
+  
+//       } catch (error) {
+//         // Handling network errors or unexpected errors
+//         console.error('Error signing in:', error);
+//         toast.error('Sign In failed');
+//       }
+//     };
+  
+//     // Call getMyProductData when userIdData changes
+//     if (userIdData) {
+//       getMyProductData();
+//     }
+//   }, [userIdData]); // Add userIdData as a dependency
+  
+
 import { IoChevronForward } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";
 import { FaTrash } from "react-icons/fa6";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "./Button";
 import { AiFillEdit } from "react-icons/ai";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Products = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [products, setProducts] = useState([]); // State to store products
+  const { userIdData } = useContext(AuthContext);
 
-  const products = [
-    {
-      id: 1,
-      name: "iPhone 13 Pro Max",
-      categories: "Electronics",
-      price: "1500$",
-      description:
-        "Latest iphone 13 max. Bought from the Apple store. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae",
-      datePosted: "21st Sept 2021",
-      views: "17177117 Views",
-    },
-    {
-      id: 2,
-      name: "iPhone 13 Pro Max",
-      categories: "Electronics",
-      price: "1500$",
-      description:
-        "Latest iphone 13 max. Bought from the Apple store. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae",
-      datePosted: "21st Sept 2021",
-      views: "17177117 Views",
-    },
+  useEffect(() => {
+    const getMyProductData = async () => {
+      try {
+        const response = await fetch(`http://162.0.237.97:3000/products/users/${userIdData}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+  
+        // If response is successful, parse the products and set them in state
+        const productsData = await response.json();
+        setProducts(productsData);
+  
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        // Display an error using toast.error if you have it configured
+      }
+    };
+  
+    if (userIdData) {
+      getMyProductData();
+    }
+  }, [userIdData]);
 
-    {
-      id: 3,
-      name: "iPhone 13 Pro Max",
-      categories: "Electronics",
-      price: "1500$",
-      description:
-        "Latest iphone 13 max. Bought from the Apple store. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae",
-      datePosted: "21st Sept 2021",
-      views: "17177117 Views",
-    },
-    {
-      id: 4,
-      name: "iPhone 13 Pro Max",
-      categories: "Electronics",
-      price: "1500$",
-      description:
-        "Latest iphone 13 max. Bought from the Apple store. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae",
-      datePosted: "21st Sept 2021",
-      views: "17177117 Views",
-    },
-    // Add more products as needed
-  ];
+  // Function to handle delete button click
+  const handleDeleteProduct = (productId) => {
+    // Implement logic to delete the product using productId
+    console.log('Deleting product:', productId);
+    // You can open the modal here and pass the productId to it
+    setOpenModal(true);
+  };
+
 
   return (
     <>
@@ -118,7 +158,7 @@ const Products = () => {
               >
                 <div className="flex justify-between">
                   <p className="text-gray-700 md:text-xl text-lg font-semibold">
-                    {product.name}
+                    {product.title}
                   </p>
                   <div className="flex items-center gap-3">
                     <FaTrash
@@ -135,7 +175,9 @@ const Products = () => {
                 <div className="">
                   <div className="text-sm text-gray-400 font-semibold">
                     <div className="py-1">
-                      <p>Categories: {product.categories}</p>
+                    <p>Categories: {product.category.map((categories, index) => (
+      <span key={index}>{categories}</span>
+    ))}</p>
                       <div className="flex gap-1">
                         <p>
                           Price: <span>{product.price}</span>
@@ -148,8 +190,8 @@ const Products = () => {
                     </p>
 
                     <div className="flex justify-between md:text-sm text-xs pt-2">
-                      <p>Date posted: {product.datePosted}</p>
-                      <p>{product.views}</p>
+                      <p>Date posted: {product.createdAt}</p>
+                      {/* <p>{product.views}</p> */}
                     </div>
                   </div>
                 </div>

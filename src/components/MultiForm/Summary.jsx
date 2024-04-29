@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Summary = () => {
+ 
+  const [formData, setFormData] = useState([]); 
+  console.log(formData,"ddfdfdfddd")
   return (
     <div>
       {/* <div class="bg-white overflow-hidden shadow rounded-lg border">

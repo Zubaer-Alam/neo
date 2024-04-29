@@ -40,8 +40,10 @@ const SignUp = () => {
       }
 
       const data = await response.json();
-      const token = data.token;
-      localStorage.setItem("token", token);
+      const token = JSON.stringify(data.token);
+      const userId = JSON.stringify(data.userId);
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('token', token);
       toast.success("Signup successful");
       setEmail("");
       setPassword("");
