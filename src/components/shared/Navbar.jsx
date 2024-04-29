@@ -59,7 +59,7 @@ const Navbar = () => {
       <nav className="flex items-center justify-between flex-wrap bg-teal-600 py-6 lg:px-[65px] px-4">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <Link to="/" className="font-semibold text-xl tracking-tight">
-            Automatica.Software
+         NEO
           </Link>
         </div>
 
