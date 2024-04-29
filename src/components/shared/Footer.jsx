@@ -15,7 +15,12 @@ const Footer = () => {
             </li>
             <li>
               <Link to="/" className="cursor-pointer hover:underline">
-                Products
+               My Products
+              </Link>
+            </li>
+            <li>
+              <Link to="/allProducts" className="cursor-pointer hover:underline">
+               All Products
               </Link>
             </li>
             <li>
