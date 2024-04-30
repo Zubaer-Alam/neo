@@ -18,7 +18,7 @@ const Price = ({ formData, setFormData }) => {
         <Input
           width="px350"
           type="number"
-          id="price"
+          id="priceR"
           label="Rent price of the product"
           placeholder=""
           value={formData.rent}

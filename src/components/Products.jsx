@@ -301,9 +301,16 @@ const Products = () => {
     }
   };
 
-  const handleConfirm = () => {
-    deleteProduct();
-    setOpenModal(false); // Close the modal after deletion
+  // const handleConfirm = () => {
+  //   deleteProduct();
+  //   setOpenModal(false);
+  //    // Close the modal after deletion
+  // };
+
+  const handleConfirm = async () => {
+    await deleteProduct();
+    setOpenModal(false);
+    window.location.href = "/"; // Navigate to the home page after deletion
   };
 
   const handleDeleteClick = (productId) => {

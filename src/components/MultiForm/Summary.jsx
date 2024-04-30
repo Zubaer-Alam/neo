@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Summary = () => {
- 
-  const [formData, setFormData] = useState([]); 
+const Summary = ({formData}) => {
   console.log(formData,"ddfdfdfddd")
   return (
     <div>
@@ -51,41 +49,32 @@ const Summary = () => {
     </div>
 </div> */}
 
-      <div class="ring-1 drop-shadow-sm ring-gray-100  rounded-lg py-5 px-8 relative block">
+      <div class="ring-1 drop-shadow-sm ring-gray-100  rounded-lg py-5 px-8 relative block w-[500px]">
         <div class="absolute -end-0 -top-0.5 size-auto items-center justify-center">
           <span class="inline-flex items-center rounded-tr-lg rounded-bl-lg bg-teal-50 px-2 py-1 text-xs font-medium text-teal-900 ">
-            To rent 50$ / day
+       {""} <span className="font-medium px-0.5">{formData.rent} </span> $ / {formData.rent_interval}
           </span>
         </div>
         <p class="mt-4 text-xl leading-6 text-gray-700">
-          1 license for up to 3 activations
+         {formData.title}
         </p>
         <p class="mt-4 flex items-baseline gap-x-1">
           <span class="text-2xl font-bold tracking-tight text-gray-900">
-            $500
+        {formData.price} $
           </span>
         </p>
-
         <div className="flex items-center gap-2 mt-4">
-          <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
-            Badge
-          </span>
-          <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
-            Badge
-          </span>
-          <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
-            Badge
-          </span>
-          <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
-            Badge
-          </span>
-        </div>
-
-        <p className="flex text-gray-600 w-[500px] my-4">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam quo
-          tempora doloribus! Quidem eaque iure quaerat praesentium architecto
-          magnam iste odio quis beatae, obcaecati qui minus voluptatem maxime
-          voluptatum? Ipsa?
+  {formData.category.map((category, index) => (
+    <span
+      key={index}
+      className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+    >
+      {category}
+    </span>
+  ))}
+</div>
+        <p className="flex text-gray-600 w-[500px] my-4 text-sm">
+     {formData.description}
         </p>
       </div>
     </div>
