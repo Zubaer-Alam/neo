@@ -17,7 +17,9 @@ export const AuthProvider = (props) => {
       <AuthContext.Provider
         value={{
         userIdData,
-        tokenData
+        setUserIdData,
+        tokenData,
+        setTokenData
         }}
       >
         {props.children}

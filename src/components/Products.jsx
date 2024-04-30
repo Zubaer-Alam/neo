@@ -241,9 +241,13 @@ import { AiFillEdit } from "react-icons/ai";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Products = () => {
+  const { tokenData, userIdData } = useContext(AuthContext);
+
+  // if (!tokenData) {
+  //   window.location.href ="/signIn"
+  // }
   const [openModal, setOpenModal] = useState(false);
   const [products, setProducts] = useState([]); // State to store products
-  const { userIdData } = useContext(AuthContext);
   const [productIdToDelete, setProductIdToDelete] = useState(null);
 
   useEffect(() => {

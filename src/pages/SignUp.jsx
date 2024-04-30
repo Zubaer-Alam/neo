@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { Link } from "react-router-dom";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
-  const [] = useState("");
+  const { tokenData, setTokenData } = useContext(AuthContext);
+
+  if (tokenData) {
+    window.location.href ="/"
+  }
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -35,6 +40,7 @@ const SignUp = () => {
         }),
       });
 
+      console.log(response)
       if (!response.ok) {
         throw new Error("Login failed");
       }
@@ -52,7 +58,7 @@ const SignUp = () => {
       setFirstName("");
       setLastName("");
       setPhone("");
-      navigate("/");
+      window.location.href ="/"
     } catch (error) {
       toast.error("Incorrect inputs");
     }

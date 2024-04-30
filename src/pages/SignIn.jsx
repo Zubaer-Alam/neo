@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Input from "../components/Input";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import Button from "../components/Button";
 import { Toaster, toast } from 'react-hot-toast';
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignIn = () => {
+  const { tokenData, setTokenData } = useContext(AuthContext);
+
+  if (tokenData) {
+    window.location.href ="/"
+  }
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -34,7 +40,7 @@ const SignIn = () => {
       toast.success('Sign In successful');
       setEmail('');
       setPassword('');
-      navigate('/');
+      window.location.href ="/"
   
     } catch (error) {
       toast.error('Incorrect email or password');

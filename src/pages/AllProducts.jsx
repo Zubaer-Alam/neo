@@ -67,7 +67,7 @@ const AllProducts = () => {
             className="inline-flex items-center  text-gray-400 "
             aria-current="page"
           >
-            Products
+           All Products
           </li>
         </ol>
 
@@ -80,7 +80,7 @@ const AllProducts = () => {
           <div className="grid grid-cols-2 gap-x-8 gap-y-4">
             {products.map((product) => (
               <Link 
-              to={`/product/${product.id}`}
+              to={`/allProduct/${product.id}`}
                 key={product.id} // Ensure each product has a unique key
                 className="border border-gray-200 rounded-xl mt-6 px-8 py-6 hover:shadow-xl  hover:border-teal-600 cursor-pointer"
               >
