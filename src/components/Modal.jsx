@@ -173,6 +173,9 @@ export default function Modal({
     setInputValues({ ...inputValues, [name]: value });
   };
 
+
+  console.log(inputFields)
+
   return (
     <>
       <div className="mx-auto w-fit">
@@ -210,7 +213,7 @@ export default function Modal({
                           </p>
                           <div className="mt-2 flex items-center gap-3">
                           {/* Render input fields with labels */}
-                          {inputFields &&
+                          {/* {inputFields &&
                             inputFields.map((inputField, index) => (
                               <div key={index} className="mt-2 flex items-center gap-4">
                                 <label className="text-sm font-medium" htmlFor={inputField.name}>{inputLabels[index]}</label>
@@ -223,22 +226,39 @@ export default function Modal({
                                   className="border border-gray-300 focus:outline-teal-500 text-sm rounded-md p-2 w-full"
                                 />
                               </div>
-                            ))}
+                            ))} */}
+                            {inputFields &&
+  inputFields.map((inputField, index) => (
+    <div key={index} className="mt-2 flex items-center gap-4">
+      <label className="text-sm font-medium" htmlFor={inputField.name}>{inputLabels[index]}</label>
+      <input
+        type={inputField.type || "date"}
+        name={inputField.name}
+        placeholder={inputField.placeholder}
+        value={inputValues[inputField.name] || ""}
+        onChange={handleInputChange}
+        className="border border-gray-300 focus:outline-teal-500 text-sm rounded-md p-2 w-full"
+      />
+    </div>
+  ))}
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="bg-[#F4FCF9] px-4 py-3 flex flex-row-reverse md:justify-normal justify-center sm:px-6 gap-4">
-                    <Button
-                      label={confirmLabel}
-                      onClick={() => onConfirm(inputValues)} // Pass input values to onConfirm
-                      textColor="white"
-                      bgColor="red-600"
-                      width="small"
-                      focusColor="gray-100"
-                      hoverColor="green-600"
-                      borderColor="green-700"
-                    />
+                  <Button
+  label={confirmLabel}
+  onClick={() => {
+    console.log('Modal Input Values:', inputValues);
+    onConfirm(inputValues);
+  }}
+  textColor="white"
+  bgColor="red-600"
+  width="small"
+  focusColor="gray-100"
+  hoverColor="green-600"
+  borderColor="green-700"
+/>
                     <Button
                       label={cancelLabel}
                       onClick={() => setOpenModal(false)}

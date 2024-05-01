@@ -378,7 +378,7 @@ const Products = () => {
             </Link>
           </div>
 
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
+          {/* <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
             {products.map((product) => (
               <div
                 key={product.id}
@@ -426,7 +426,62 @@ const Products = () => {
                 </div>
               </div>
             ))}
+          </div> */}
+
+<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
+  {products.length === 0 ? (
+    <div className="text-gray-700 font-semibold">No products available</div>
+  ) : (
+    products.map((product) => (
+      <div
+        key={product.id}
+        className="border border-gray-200 rounded-xl mt-6 md:px-8 px-4 py-6"
+      >
+        <div className="flex justify-between">
+          <p className="text-gray-700 md:text-xl text-lg font-semibold">
+            {product.title}
+          </p>
+          <div className="flex items-center gap-3">
+            <FaTrash
+              className="text-gray-600 cursor-pointer"
+              onClick={() => handleDeleteClick(product.id)}
+            />
+            <Link to="/editProduct">
+              <AiFillEdit className="text-gray-600 cursor-pointer text-xl" />
+            </Link>
           </div>
+        </div>
+
+        <div className="">
+          <div className="text-sm text-gray-400 font-semibold">
+            <div className="py-1">
+              <p>
+                Categories:{" "}
+                {product.category.map((categories, index) => (
+                  <span key={index}>{categories}</span>
+                ))}
+              </p>
+              <div className="flex gap-1">
+                <p>
+                  Price: <span>{product.price}</span>
+                </p>
+              </div>
+            </div>
+
+            <p className="text-gray-700 md:text-base text-sm line-clamp-3">
+              {product.description}
+            </p>
+
+            <div className="flex justify-between md:text-sm text-xs pt-2">
+              <p>Date posted: {product.createdAt}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  )}
+</div>
+
         </div>
       </section>
     </>

@@ -73,7 +73,7 @@ const Summary = ({formData}) => {
     </span>
   ))}
 </div>
-        <p className="flex text-gray-600 w-[500px] my-4 text-sm">
+        <p className="flex text-gray-600 w-[435px] my-4 text-sm">
      {formData.description}
         </p>
       </div>

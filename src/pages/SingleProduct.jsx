@@ -240,8 +240,9 @@ function SingleProduct() {
         // If response is successful, parse the products and set them in state
         const productsData = await response.json();
         const rent_sell_logic = productsData.rent_sell
+   
         setProduct(productsData);
-        console.log("jshdjsgdgsd", rent_sell_logic);
+        console.log("jshdjsgdgsd",productsData);
       } catch (error) {
         console.error('Error fetching products:', error);
         // Display an error using toast.error if you have it configured
@@ -253,20 +254,100 @@ function SingleProduct() {
     }
   }, [id]);
 
-  
+  const productId = product?.id;
+  const buyerId = userIdData;
+  const renterId = userIdData;
+  console.log(renterId,"gshdsgdgsaudgasiugdiu")
+const buyProduct = async () => {    
+    try {
+      const response = await fetch('http://162.0.237.97:3000/products/buy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId, buyerId ,      startDate: inputValues.startDate,
+          endDate: inputValues.endDate,}),
+      });
 
-  const handleConfirm = () => {
+      if (!response.ok) {
+        throw new Error('Sign In failed');
+      }
+
+      const data = await response.json();
+
+      toast.success('Sign In successful');
+      window.location.href ="/"
+  
+    } catch (error) {
+      toast.error('Incorrect email or password');
+    }
+  };
+
+  
+console.log(inputValues.field2 )
+// const rentProduct = async ({inputValues}) => {    
+//   console.log('Input Values:', inputValues);
+//     try {
+//       const response = await fetch('http://162.0.237.97:3000/products/rent', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ productId, renterId,   startDate: inputValues.field1,
+//           endDate: inputValues.field2  }),
+//       });
+
+//       if (!response.ok) {
+//         throw new Error('Sign In failed');
+//       }
+
+//       const data = await response.json();
+
+//       toast.success('Sign In successful');
+//       window.location.href ="/"
+  
+//     } catch (error) {
+//       toast.error('Incorrect email or password');
+//     }
+//   };
+
+const rentProduct = async (inputValues) => {
+  console.log('Input Values:', inputValues);
+  try {
+    const response = await fetch('http://162.0.237.97:3000/products/rent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        productId,
+        renterId,
+        startDate: inputValues.startDate,
+        endDate: inputValues.endDate,
+      }),
+    });
+    toast.success('Rent Successful');
+    // Rest of the code...
+  } catch (error) {
+    toast.error('Rent failed');
+    toast.error('Server Issue');
+  }
+};
+
+
+  const handleConfirm = (inputValues) => {
     // Handle confirmation action with inputValues
     console.log('Confirmed with input values:', inputValues);
     // Reset input values and close modal
+    rentProduct(inputValues);
     setInputValues({});
     setOpenModal(false);
   };
 
   const inputLabels = ['From', 'To']; // Labels corresponding to input fields
   const inputFields = [
-    { name: 'field1', placeholder: 'Enter Field 1' },
-    { name: 'field2', placeholder: 'Enter Field 2' },
+    { name: 'startDate', placeholder: 'Enter Start Date', type: 'date' },
+    { name: 'endDate', placeholder: 'Enter End Date', type: 'date' },
   ];
 
   if (!product) {
@@ -297,7 +378,7 @@ function SingleProduct() {
         description="Are you sure you want to rent this product?"
         confirmLabel="Yes"
         cancelLabel="Cancel"
-        onConfirm={handleConfirm}
+        onConfirm={(inputValues) => handleConfirm(inputValues)}
         inputLabels={inputLabels}
         inputFields={inputFields} // Pass input fields array to the modal
       />
@@ -309,6 +390,7 @@ function SingleProduct() {
         description="Are you sure you want to buy this product?"
         confirmLabel="Yes"
         cancelLabel="Cancel"
+        onConfirm={buyProduct}
       />
   <section section className="lg:px-[65px] px-4">
      <ol
