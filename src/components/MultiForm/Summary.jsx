@@ -63,7 +63,7 @@ const Summary = ({formData}) => {
         {formData.price} $
           </span>
         </p>
-        <div className="flex items-center gap-2 mt-4">
+        <div className="flex flex-wrap items-center gap-2 mt-4">
   {formData.category.map((category, index) => (
     <span
       key={index}
@@ -73,7 +73,7 @@ const Summary = ({formData}) => {
     </span>
   ))}
 </div>
-        <p className="flex text-gray-600 w-[435px] my-4 text-sm">
+        <p className="flex text-gray-600 my-4 text-sm text-justify">
      {formData.description}
         </p>
       </div>

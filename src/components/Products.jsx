@@ -266,6 +266,7 @@ const Products = () => {
 
         // If response is successful, parse the products and set them in state
         const productsData = await response.json();
+        console.log(productsData,"my pro")
         setProducts(productsData);
 
       } catch (error) {
@@ -317,7 +318,15 @@ const Products = () => {
     setProductIdToDelete(productId);
     setOpenModal(true);
   };
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
+  const toggleDescription = (productId) => {
+    setExpandedDescriptions({
+      ...expandedDescriptions,
+      [productId]: !expandedDescriptions[productId]
+    });
+  };
+  
   return (
     <>
       <div>
@@ -428,6 +437,8 @@ const Products = () => {
             ))}
           </div> */}
 
+
+
 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
   {products.length === 0 ? (
     <div className="text-gray-700 font-semibold">No products available</div>
@@ -435,8 +446,17 @@ const Products = () => {
     products.map((product) => (
       <div
         key={product.id}
-        className="border border-gray-200 rounded-xl mt-6 md:px-8 px-4 py-6"
+        className="border border-gray-200 rounded-xl mt-6 md:px-8 px-4 py-6 relative"
       >
+         <div class="absolute -end-[1px] -top-1">
+         <span class="capitalize bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-tr-xl dark:bg-gray-700 dark:text-green-400 border border-green-400">
+          
+         {product.status}
+          
+          </span>
+
+         </div>
+
         <div className="flex justify-between">
           <p className="text-gray-700 md:text-xl text-lg font-semibold">
             {product.title}
@@ -455,12 +475,17 @@ const Products = () => {
         <div className="">
           <div className="text-sm text-gray-400 font-semibold">
             <div className="py-1">
-              <p>
-                Categories:{" "}
-                {product.category.map((categories, index) => (
-                  <span key={index}>{categories}</span>
-                ))}
-              </p>
+            <div className="flex flex-wrap items-center gap-2 my-4">
+  {product.category.map((categories, index) => (
+    <span
+      key={index}
+      className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+    >
+      {categories}
+    </span>
+  ))}
+</div>
+          
               <div className="flex gap-1">
                 <p>
                   Price: <span>{product.price}</span>
@@ -468,9 +493,19 @@ const Products = () => {
               </div>
             </div>
 
-            <p className="text-gray-700 md:text-base text-sm line-clamp-3">
-              {product.description}
-            </p>
+         {/* Description */}
+         <p className={`text-gray-700 md:text-base text-sm ${expandedDescriptions[product.id] ? '' : 'line-clamp-3'}`}>
+                      {product.description}
+                    </p>
+                    {/* Read more button */}
+                    {product.description.length > 100 && (
+                      <button
+                        onClick={() => toggleDescription(product.id)}
+                        className="text-teal-500 hover:underline"
+                      >
+                        {expandedDescriptions[product.id] ? 'Show Less' : 'Read More'}
+                      </button>
+                    )}
 
             <div className="flex justify-between md:text-sm text-xs pt-2">
               <p>Date posted: {product.createdAt}</p>
