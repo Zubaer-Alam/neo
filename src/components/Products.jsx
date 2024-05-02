@@ -446,7 +446,7 @@ const Products = () => {
     products.map((product) => (
       <div
         key={product.id}
-        className="border border-gray-200 rounded-xl mt-6 md:px-8 px-4 py-6 relative"
+        className="border border-gray-200 drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
       >
          <div class="absolute -end-[1px] -top-1">
          <span class="capitalize bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-tr-xl dark:bg-gray-700 dark:text-green-400 border border-green-400">
@@ -494,7 +494,7 @@ const Products = () => {
             </div>
 
          {/* Description */}
-         <p className={`text-gray-700 md:text-base text-sm ${expandedDescriptions[product.id] ? '' : 'line-clamp-3'}`}>
+         <p className={`text-gray-700 text-sm text-justify ${expandedDescriptions[product.id] ? '' : 'line-clamp-3'}`}>
                       {product.description}
                     </p>
                     {/* Read more button */}
