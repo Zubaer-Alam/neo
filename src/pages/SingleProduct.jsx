@@ -412,7 +412,7 @@ const rentProduct = async (inputValues) => {
       </ol>
       <div className="flex justify-center">
         <div>
-        <div className="border border-gray-200 rounded-xl mt-6 px-8 py-6 hover:shadow-xl   cursor-pointer">
+        <div className="border max-w-3xl border-gray-200 rounded-xl mt-6 px-8 py-6 hover:shadow-xl   cursor-pointer">
           <div className="">
             <p className="text-gray-700 text-xl font-semibold">
               {product.title}
@@ -434,7 +434,7 @@ const rentProduct = async (inputValues) => {
                 </div>
               </div>
 
-              <p className="text-gray-700 line-clamp-3 w-[500px]">
+              <p className="text-gray-700 line-clamp-3">
                 {product.description}
       
               </p>

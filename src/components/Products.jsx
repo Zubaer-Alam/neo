@@ -437,7 +437,7 @@ const Products = () => {
             ))}
           </div> */}
 
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
+          <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
             {products.length === 0 ? (
               <div className="text-gray-700 font-semibold">
                 No products available
@@ -448,19 +448,46 @@ const Products = () => {
                   key={product.id}
                   className="border border-gray-200 shadow-lg drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
                 >
-          <div className="absolute -end-2 -top-[50px]">
-  <div className="mx-auto my-14 flex justify-center relative">
-    <span
-      className={`capitalize text-white bg-blue-900 text-xs font-medium px-3.5 py-1 border`}
-    >
-      {product.status}
+                  {/* <div className="absolute -start-2 -top-[50px]">
+                    <div className="mx-auto my-14 flex justify-center items-center gap-2 relative">
+                      <span
+                        className={`capitalize text-white bg-blue-900 text-xs font-medium px-3.5 py-1 border`}
+                      >
+                        {product.status}
+                      </span>
 
+                 <div className="show flex gap-2 items-center">
+                 <p className="text-xs" >
+                        {product.startDate}
+                      </p>
+                      <p className="text-xs">to</p>
+                      <p className="text-xs">
+                        {product.endDate}
+                      </p>
+                 </div>
+                    </div>
+                  </div> */}
+
+<div className="absolute -start-2 -top-[50px]">
+  <div className="mx-auto my-14 flex justify-center items-center gap-2 relative">
+    <span className={`capitalize text-white bg-blue-900 text-xs font-medium px-3.5 py-1 border`}>
+      {product.status}
     </span>
+
+    {/* Conditional rendering for the 'show' div */}
+    {product.status === 'rented' && (
+      <div className="show flex gap-2 items-center">
+        <p className="text-xs">{product.startDate}</p>
+        <p className="text-xs">to</p>
+        <p className="text-xs">{product.endDate}</p>
+      </div>
+    )}
   </div>
 </div>
 
+
                   <div className="flex justify-between">
-                    <p className="text-gray-700 text-[16px] font-semibold mt-2">
+                    <p className="text-gray-700 text-[16px] font-semibold mt-3">
                       {product.title}
                       <span class="bg-gray-100 text-gray-800 border text-xs font-medium ms-2 px-2.5 py-0.5 rounded-full ">
                         {product.price} $
