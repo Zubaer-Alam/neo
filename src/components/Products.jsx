@@ -234,7 +234,7 @@
 import { IoChevronForward } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";
-import { FaTrash } from "react-icons/fa6";
+import { FaRegClock, FaTrash } from "react-icons/fa6";
 import { useContext, useEffect, useState } from "react";
 import Button from "./Button";
 import { AiFillEdit } from "react-icons/ai";
@@ -446,22 +446,31 @@ const Products = () => {
     products.map((product) => (
       <div
         key={product.id}
-        className="border border-gray-200 drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
+        className="border border-gray-200 shadow-lg drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
       >
-         <div class="absolute -end-[1px] -top-1">
-         <span class="capitalize bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-tr-xl dark:bg-gray-700 dark:text-green-400 border border-green-400">
-          
-         {product.status}
-          
-          </span>
+         <div class="absolute -end-2 top-2">
+         <div className="mx-auto my-14 flex justify-center">
+  <span className={`capitalize bg-${product.status === "rented" ? "teal-500" : "blue-500"} text-white text-xs font-medium px-3.5 py-1 border`}>
+    {product.status}
+    {product.status === "rented" && (
+      <div className="absolute -bottom-12 whitespace-nowrap opacity-0 duration-500 hover:hidden group-hover:-bottom-16 group-hover:opacity-100">
+        <p className="rounded-md bg-[#0EA5E9] px-3 py-2 text-white shadow-[0px_0px_10px_0px_#0EA5E9]">This is the hover text</p>
+        <span className="absolute -top-2 left-[50%] h-0 w-0 -translate-x-1/2 -rotate-[45deg] border-b-[20px] border-r-[20px] border-b-transparent border-r-[#0EA5E9] shadow-[0px_0px_10px_0px_#0EA5E9]"></span>
+      </div>
+    )}
+  </span>
+</div>
+
 
          </div>
 
         <div className="flex justify-between">
-          <p className="text-gray-700 md:text-xl text-lg font-semibold">
-            {product.title}
+          <p className="text-gray-700 text-[20px] font-semibold">
+            {product.title}  
+            <span class="bg-gray-100 text-gray-800 border text-xs font-medium ms-2 px-2.5 py-0.5 rounded-full ">
+              {product.price} $</span>
           </p>
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             <FaTrash
               className="text-gray-600 cursor-pointer"
               onClick={() => handleDeleteClick(product.id)}
@@ -469,12 +478,12 @@ const Products = () => {
             <Link to="/editProduct">
               <AiFillEdit className="text-gray-600 cursor-pointer text-xl" />
             </Link>
-          </div>
+          </div> */}
         </div>
 
         <div className="">
           <div className="text-sm text-gray-400 font-semibold">
-            <div className="py-1">
+          
             <div className="flex flex-wrap items-center gap-2 my-4">
   {product.category.map((categories, index) => (
     <span
@@ -486,12 +495,12 @@ const Products = () => {
   ))}
 </div>
           
-              <div className="flex gap-1">
+              {/* <div className="pb-2">
                 <p>
                   Price: <span>{product.price}</span>
                 </p>
               </div>
-            </div>
+           */}
 
          {/* Description */}
          <p className={`text-gray-700 text-sm text-justify ${expandedDescriptions[product.id] ? '' : 'line-clamp-3'}`}>
@@ -506,9 +515,22 @@ const Products = () => {
                         {expandedDescriptions[product.id] ? 'Show Less' : 'Read More'}
                       </button>
                     )}
-
+            <div className="">
             <div className="flex justify-between md:text-sm text-xs pt-2">
               <p>Date posted: {product.createdAt}</p>
+
+       
+          <div className="flex items-center gap-3">
+            <FaTrash
+              className="text-gray-600 cursor-pointer"
+              onClick={() => handleDeleteClick(product.id)}
+            />
+            <Link to="/editProduct">
+              <AiFillEdit className="text-gray-600 cursor-pointer text-xl" />
+            </Link>
+          </div>
+       
+            </div>
             </div>
           </div>
         </div>
