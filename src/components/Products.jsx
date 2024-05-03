@@ -19,28 +19,27 @@
 //             'Content-Type': 'application/json',
 //           },
 //         });
-  
+
 //         if (!response.ok) {
 //           throw new Error('Sign In failed');
 //         }
-  
+
 //         // If response is successful, you might want to handle the data here
 //         const data = await response.json();
 //         console.log(data); // Logging the data for further processing
-  
+
 //       } catch (error) {
 //         // Handling network errors or unexpected errors
 //         console.error('Error signing in:', error);
 //         toast.error('Sign In failed');
 //       }
 //     };
-  
+
 //     // Call getMyProductData when userIdData changes
 //     if (userIdData) {
 //       getMyProductData();
 //     }
 //   }, [userIdData]); // Add userIdData as a dependency
-  
 
 // import { IoChevronForward } from "react-icons/io5";
 // import { Link } from "react-router-dom";
@@ -114,7 +113,6 @@
 //     setOpenModal(false); // Close the modal after deletion
 //   };
 
-
 //   return (
 //     <>
 
@@ -163,7 +161,7 @@
 //             <p className="text-[22px] text-textDeep font-bold">My Products</p>
 //             <Link className="" to="/addProduct">
 //               {" "}
-//               <Button label="Add Product"   
+//               <Button label="Add Product"
 //                       textColor="white"
 //                       bgColor="teal-600"
 //                       width="small"
@@ -229,8 +227,6 @@
 
 // export default Products;
 
-
-
 import { IoChevronForward } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";
@@ -253,24 +249,26 @@ const Products = () => {
   useEffect(() => {
     const getMyProductData = async () => {
       try {
-        const response = await fetch(`http://162.0.237.97:3000/products/users/${userIdData}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const response = await fetch(
+          `http://162.0.237.97:3000/products/users/${userIdData}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (!response.ok) {
-          throw new Error('Failed to fetch products');
+          throw new Error("Failed to fetch products");
         }
 
         // If response is successful, parse the products and set them in state
         const productsData = await response.json();
-        console.log(productsData,"my pro")
+        console.log(productsData, "my pro");
         setProducts(productsData);
-
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
         // Display an error using toast.error if you have it configured
       }
     };
@@ -282,22 +280,24 @@ const Products = () => {
 
   const deleteProduct = async () => {
     try {
-      const response = await fetch(`http://162.0.237.97:3000/products/${productIdToDelete}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `http://162.0.237.97:3000/products/${productIdToDelete}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to delete product');
+        throw new Error("Failed to delete product");
       }
 
       // Optionally, you might want to refetch the products after deletion
       getMyProductData();
-
     } catch (error) {
-      console.error('Error deleting product:', error);
+      console.error("Error deleting product:", error);
       // Display an error using toast.error if you have it configured
     }
   };
@@ -323,10 +323,10 @@ const Products = () => {
   const toggleDescription = (productId) => {
     setExpandedDescriptions({
       ...expandedDescriptions,
-      [productId]: !expandedDescriptions[productId]
+      [productId]: !expandedDescriptions[productId],
     });
   };
-  
+
   return (
     <>
       <div>
@@ -341,7 +341,7 @@ const Products = () => {
         />
       </div>
       <section section className="lg:px-[65px] px-4">
-         <ol
+        <ol
           className="flex items-center whitespace-nowrap font-medium md:text-base text-sm  pb-6 md:ps-0 pt-8 "
           aria-label="Breadcrumb"
         >
@@ -437,40 +437,45 @@ const Products = () => {
             ))}
           </div> */}
 
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
+            {products.length === 0 ? (
+              <div className="text-gray-700 font-semibold">
+                No products available
+              </div>
+            ) : (
+              products.map((product) => (
+                <div
+                  key={product.id}
+                  className="border border-gray-200 shadow-lg drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
+                >
+                  <div class="absolute -end-2 top-2">
+                    <div className="mx-auto my-14 flex justify-center">
+                      <span
+                        className={`capitalize bg-${
+                          product.status === "rented" ? "teal-500" : "blue-500"
+                        } text-white text-xs font-medium px-3.5 py-1 border`}
+                      >
+                        {product.status}
+                        {product.status === "rented" && (
+                          <div className="absolute -bottom-12 whitespace-nowrap opacity-0 duration-500 hover:hidden group-hover:-bottom-16 group-hover:opacity-100">
+                            <p className="rounded-md bg-[#0EA5E9] px-3 py-2 text-white shadow-[0px_0px_10px_0px_#0EA5E9]">
+                              This is the hover text
+                            </p>
+                            <span className="absolute -top-2 left-[50%] h-0 w-0 -translate-x-1/2 -rotate-[45deg] border-b-[20px] border-r-[20px] border-b-transparent border-r-[#0EA5E9] shadow-[0px_0px_10px_0px_#0EA5E9]"></span>
+                          </div>
+                        )}
+                      </span>
+                    </div>
+                  </div>
 
-
-<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
-  {products.length === 0 ? (
-    <div className="text-gray-700 font-semibold">No products available</div>
-  ) : (
-    products.map((product) => (
-      <div
-        key={product.id}
-        className="border border-gray-200 shadow-lg drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
-      >
-         <div class="absolute -end-2 top-2">
-         <div className="mx-auto my-14 flex justify-center">
-  <span className={`capitalize bg-${product.status === "rented" ? "teal-500" : "blue-500"} text-white text-xs font-medium px-3.5 py-1 border`}>
-    {product.status}
-    {product.status === "rented" && (
-      <div className="absolute -bottom-12 whitespace-nowrap opacity-0 duration-500 hover:hidden group-hover:-bottom-16 group-hover:opacity-100">
-        <p className="rounded-md bg-[#0EA5E9] px-3 py-2 text-white shadow-[0px_0px_10px_0px_#0EA5E9]">This is the hover text</p>
-        <span className="absolute -top-2 left-[50%] h-0 w-0 -translate-x-1/2 -rotate-[45deg] border-b-[20px] border-r-[20px] border-b-transparent border-r-[#0EA5E9] shadow-[0px_0px_10px_0px_#0EA5E9]"></span>
-      </div>
-    )}
-  </span>
-</div>
-
-
-         </div>
-
-        <div className="flex justify-between">
-          <p className="text-gray-700 text-[20px] font-semibold">
-            {product.title}  
-            <span class="bg-gray-100 text-gray-800 border text-xs font-medium ms-2 px-2.5 py-0.5 rounded-full ">
-              {product.price} $</span>
-          </p>
-          {/* <div className="flex items-center gap-3">
+                  <div className="flex justify-between">
+                    <p className="text-gray-700 text-[16px] font-semibold">
+                      {product.title}
+                      <span class="bg-gray-100 text-gray-800 border text-xs font-medium ms-2 px-2.5 py-0.5 rounded-full ">
+                        {product.price} $
+                      </span>
+                    </p>
+                    {/* <div className="flex items-center gap-3">
             <FaTrash
               className="text-gray-600 cursor-pointer"
               onClick={() => handleDeleteClick(product.id)}
@@ -479,66 +484,68 @@ const Products = () => {
               <AiFillEdit className="text-gray-600 cursor-pointer text-xl" />
             </Link>
           </div> */}
-        </div>
+                  </div>
 
-        <div className="">
-          <div className="text-sm text-gray-400 font-semibold">
-          
-            <div className="flex flex-wrap items-center gap-2 my-4">
-  {product.category.map((categories, index) => (
-    <span
-      key={index}
-      className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
-    >
-      {categories}
-    </span>
-  ))}
-</div>
-          
-              {/* <div className="pb-2">
+                  <div className="">
+                    <div className="text-sm text-gray-400 font-semibold">
+                      <div className="flex flex-wrap items-center gap-2 my-4">
+                        {product.category.map((categories, index) => (
+                          <span
+                            key={index}
+                            className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+                          >
+                            {categories}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* <div className="pb-2">
                 <p>
                   Price: <span>{product.price}</span>
                 </p>
               </div>
            */}
 
-         {/* Description */}
-         <p className={`text-gray-700 text-sm text-justify ${expandedDescriptions[product.id] ? '' : 'line-clamp-3'}`}>
-                      {product.description}
-                    </p>
-                    {/* Read more button */}
-                    {product.description.length > 100 && (
-                      <button
-                        onClick={() => toggleDescription(product.id)}
-                        className="text-teal-500 hover:underline"
+                      {/* Description */}
+                      <p
+                        className={`text-gray-700 text-sm font-normal text-justify ${
+                          expandedDescriptions[product.id] ? "" : "line-clamp-3"
+                        }`}
                       >
-                        {expandedDescriptions[product.id] ? 'Show Less' : 'Read More'}
-                      </button>
-                    )}
-            <div className="">
-            <div className="flex justify-between md:text-sm text-xs pt-2">
-              <p>Date posted: {product.createdAt}</p>
+                        {product.description}
+                      </p>
+                      {/* Read more button */}
+                      {product.description.length > 100 && (
+                        <button
+                          onClick={() => toggleDescription(product.id)}
+                          className="text-teal-500 hover:underline"
+                        >
+                          {expandedDescriptions[product.id]
+                            ? "Show Less"
+                            : "Read More"}
+                        </button>
+                      )}
+                      <div className="">
+                        <div className="flex justify-between md:text-sm text-xs pt-2">
+                          <p>Date posted: {product.createdAt}</p>
 
-       
-          <div className="flex items-center gap-3">
-            <FaTrash
-              className="text-gray-600 cursor-pointer"
-              onClick={() => handleDeleteClick(product.id)}
-            />
-            <Link to="/editProduct">
-              <AiFillEdit className="text-gray-600 cursor-pointer text-xl" />
-            </Link>
+                          <div className="flex items-center gap-3">
+                            <FaTrash
+                              className="text-gray-600 cursor-pointer"
+                              onClick={() => handleDeleteClick(product.id)}
+                            />
+                            <Link to="/editProduct">
+                              <AiFillEdit className="text-gray-600 cursor-pointer text-xl" />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
-       
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    ))
-  )}
-</div>
-
         </div>
       </section>
     </>

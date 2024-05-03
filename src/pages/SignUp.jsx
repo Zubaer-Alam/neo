@@ -239,7 +239,10 @@ const SignUp = () => {
 
       console.log(response)
       if (!response.ok) {
-        throw new Error("Login failed");
+        // throw new Error("Login failed");
+        const errorData = await response.json(); // Parse error response
+        throw new Error(errorData.error); // Throw the error message
+
       }
 
       const data = await response.json();
@@ -257,7 +260,7 @@ const SignUp = () => {
       setPhone("");
       window.location.href ="/"
     } catch (error) {
-      toast.error("Incorrect inputs");
+      toast.error(error.message); 
     }
   };
 

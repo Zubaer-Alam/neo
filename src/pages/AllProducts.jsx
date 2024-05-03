@@ -129,20 +129,23 @@ import { IoChevronForward } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa6";
 import { AiFillEdit } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const {userIdData  } = useContext(AuthContext);
 
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const response = await fetch(`http://162.0.237.97:3000/products`, {
-          method: 'GET',
+        const response = await fetch(`http://162.0.237.97:3000/products/getAll`, {
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify({ userId:userIdData }),
         });
 
         if (!response.ok) {

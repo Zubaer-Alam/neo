@@ -152,7 +152,8 @@ const SignIn = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Sign In failed');
+        const errorData = await response.json(); // Parse error response
+        throw new Error(errorData.error); // Throw the error message
       }
 
       const data = await response.json();
@@ -167,7 +168,7 @@ const SignIn = () => {
       window.location.href ="/"
   
     } catch (error) {
-      toast.error('Incorrect email or password');
+      toast.error(error.message); 
     }
   };
 
