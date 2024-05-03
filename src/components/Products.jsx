@@ -448,28 +448,19 @@ const Products = () => {
                   key={product.id}
                   className="border border-gray-200 shadow-lg drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
                 >
-                  <div class="absolute -end-2 top-2">
-                    <div className="mx-auto my-14 flex justify-center">
-                      <span
-                        className={`capitalize bg-${
-                          product.status === "rented" ? "teal-500" : "blue-500"
-                        } text-white bg-blue-900 text-xs font-medium px-3.5 py-1 border`}
-                      >
-                        {product.status}
-                        {product.status === "rented" && (
-                          <div className="absolute -bottom-12 whitespace-nowrap opacity-0 duration-500 hover:hidden group-hover:-bottom-16 group-hover:opacity-100">
-                            <p className="rounded-md bg-[#0EA5E9] px-3 py-2 text-white shadow-[0px_0px_10px_0px_#0EA5E9]">
-                              This is the hover text
-                            </p>
-                            <span className="absolute -top-2 left-[50%] h-0 w-0 -translate-x-1/2 -rotate-[45deg] border-b-[20px] border-r-[20px] border-b-transparent border-r-[#0EA5E9] shadow-[0px_0px_10px_0px_#0EA5E9]"></span>
-                          </div>
-                        )}
-                      </span>
-                    </div>
-                  </div>
+          <div className="absolute -end-2 -top-[50px]">
+  <div className="mx-auto my-14 flex justify-center relative">
+    <span
+      className={`capitalize text-white bg-blue-900 text-xs font-medium px-3.5 py-1 border`}
+    >
+      {product.status}
+
+    </span>
+  </div>
+</div>
 
                   <div className="flex justify-between">
-                    <p className="text-gray-700 text-[16px] font-semibold">
+                    <p className="text-gray-700 text-[16px] font-semibold mt-2">
                       {product.title}
                       <span class="bg-gray-100 text-gray-800 border text-xs font-medium ms-2 px-2.5 py-0.5 rounded-full ">
                         {product.price} $
