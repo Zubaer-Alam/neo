@@ -453,7 +453,7 @@ const Products = () => {
                       <span
                         className={`capitalize bg-${
                           product.status === "rented" ? "teal-500" : "blue-500"
-                        } text-white text-xs font-medium px-3.5 py-1 border`}
+                        } text-white bg-blue-900 text-xs font-medium px-3.5 py-1 border`}
                       >
                         {product.status}
                         {product.status === "rented" && (

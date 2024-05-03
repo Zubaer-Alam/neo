@@ -136,7 +136,7 @@ const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const {userIdData  } = useContext(AuthContext);
-
+console.log(userIdData,"DDDDDD")
   useEffect(() => {
     const getProducts = async () => {
       try {
