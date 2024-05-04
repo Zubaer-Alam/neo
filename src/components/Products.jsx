@@ -148,15 +148,15 @@
 //     const [editMode, setEditMode] = useState(false);
 //     // State to store the product being edited
 //     const [editingProduct, setEditingProduct] = useState(null);
-  
+
 //     // Rest of your component code...
-  
+
 //     const handleEditClick = (productId) => {
 //       // Set the editing product and toggle edit mode
 //       setEditingProduct(productId);
 //       setEditMode(true);
 //     };
-  
+
 //     const handleBackClick = () => {
 //       // Clear the editing product and toggle edit mode
 //       setEditingProduct(null);
@@ -252,7 +252,7 @@
 //                   />
 
 //                 <div className="flex justify-between my-4">
-              
+
 //                   <Input
 //                     width="px350"
 //                     type="text"
@@ -356,7 +356,7 @@
 //             </Link>
 //           </div>
 
-      
+
 //           <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
 //             {products.length === 0 ? (
 //               <div className="text-gray-700 font-semibold">
@@ -368,7 +368,7 @@
 //                   key={product.id}
 //                   className="border border-gray-200 shadow-lg drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
 //                 >
-              
+
 
 // <div className="absolute -start-2 -top-[50px]">
 //   <div className="mx-auto my-14 flex justify-center items-center gap-2 relative">
@@ -395,7 +395,7 @@
 //                         {product.price} $
 //                       </span>
 //                     </p>
-                 
+
 //                   </div>
 
 //                   <div className="">
@@ -449,7 +449,7 @@
 //                             <div>
 //                               <AiFillEdit
 //                                   onClick={() => handleEditClick(product.id)}
-                              
+
 //                               className="text-gray-600 cursor-pointer text-xl" />
 //                             </div>
 //                           </div>
@@ -499,6 +499,7 @@ const Products = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [formData, setFormData] = useState({ category: [] });
   const navigate = useNavigate();
+  const [showDates, setShowDates] = useState({});
 
   useEffect(() => {
     const getMyProductData = async () => {
@@ -570,11 +571,6 @@ const Products = () => {
     });
   };
 
-  // const handleEditClick = (productId) => {
-  //   setEditingProduct(productId);
-  //   setEditMode(true);
-  // };
-
   const handleEditClick = async (productId) => {
     try {
       const response = await fetch(
@@ -632,22 +628,28 @@ const Products = () => {
       );
 
       if (!response.ok) {
-        const errorData = await response.json(); // Parse error response
-        throw new Error(errorData.error); // Throw the error message
+        const errorData = await response.json();
+        throw new Error(errorData.error);
       }
 
-      window.location.href ="/"
-      toast.success('Product update successful');
-
+      window.location.href = "/";
+      toast.success("Product update successful");
     } catch (error) {
-      toast.error(error.message); 
+      toast.error(error.message);
     }
+  };
+
+  const toggleDates = (productId) => {
+    setShowDates((prevState) => ({
+      ...prevState,
+      [productId]: !prevState[productId],
+    }));
   };
 
   if (editMode && editingProduct) {
     return (
-     
-      <div> <Toaster />
+      <div>
+        <Toaster />
         <section className="lg:px-[65px] px-4">
           <ol
             className="flex items-center whitespace-nowrap font-medium md:text-base text-sm pb-6 md:ps-0 pt-8"
@@ -664,16 +666,10 @@ const Products = () => {
             </li>
             <li className="inline-flex items-center">
               <div
-                className="
-                cursor-pointer
-                flex items-center text-textDeep hover:text-blue-600 focus:outline-none focus:text-blue-600"
-             
-          onClick={handleBackClick}
+                className="cursor-pointer flex items-center text-textDeep hover:text-blue-600 focus:outline-none focus:text-blue-600"
+                onClick={handleBackClick}
               >
-        
-   
-      
-        My Products
+                My Products
               </div>
               <IoChevronForward className="mx-2 size-4 text-textDeep" />
             </li>
@@ -685,21 +681,20 @@ const Products = () => {
             </li>
           </ol>
           <div>
-            <div className="flex justify-between items-center
-            ">
+            <div className="flex justify-between items-center">
               <p className="text-[22px] text-textDeep font-bold">
                 Edit Product
               </p>
               <Button
-          label="Back to My Products"
-          textColor="black"
-          bgColor="white"
-          width="small"
-          focusColor="gray-100"
-          hoverColor="teal-900"
-          borderColor="black"
-          onClick={handleBackClick}
-        />
+                label="Back to My Products"
+                textColor="black"
+                bgColor="white"
+                width="small"
+                focusColor="gray-100"
+                hoverColor="teal-900"
+                borderColor="black"
+                onClick={handleBackClick}
+              />
             </div>
 
             <div className="flex justify-center">
@@ -777,7 +772,6 @@ const Products = () => {
             </div>
           </div>
         </section>
- 
       </div>
     );
   }
@@ -813,7 +807,7 @@ const Products = () => {
             className="inline-flex items-center text-gray-400"
             aria-current="page"
           >
-         My   Products
+            My Products
           </li>
         </ol>
 
@@ -844,20 +838,30 @@ const Products = () => {
                   key={product.id}
                   className="border border-gray-200 shadow-lg drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
                 >
-                  <div className="absolute -start-2 -top-[50px]">
-                    <div className="mx-auto my-14 flex justify-center items-center gap-2 relative">
-                      <span
-                        className={`capitalize text-white bg-blue-900 text-xs font-medium px-3.5 py-1 border`}
-                      >
-                        {product.status}
-                      </span>
-
-                      {product.status === "rented" && (
-                        <div className="show flex gap-2 items-center">
-                          <p className="text-xs">{product.startDate}</p>
-                          <p className="text-xs">to</p>
-                          <p className="text-xs">{product.endDate}</p>
+                  <div className="absolute -end-2 -top-[20px]">
+                    <div className="mx-auto my-14 flex justify-start items-center gap-2 relative">
+                      {product.status === "rented" ? (
+                        <div
+                          className={`show flex items-center cursor-pointer transition-all duration-300 ease-in-out bg-blue-900 px-3.5 py-1 ${showDates[product.id] ? "w-auto" : "w-[80px]"
+                            }`}
+                          onClick={() => toggleDates(product.id)}
+                        >
+                          {showDates[product.id] ? (
+                            <div className="flex gap-2 items-center">
+                              <p className="text-xs text-white">{product.startDate}</p>
+                              <p className="text-xs text-white">to</p>
+                              <p className="text-xs text-white">{product.endDate}</p>
+                            </div>
+                          ) : (
+                            <span className="capitalize text-white text-xs font-medium">
+                              {product.status}
+                            </span>
+                          )}
                         </div>
+                      ) : (
+                        <span className="capitalize text-white bg-blue-900 text-xs font-medium px-3.5 py-1">
+                          {product.status}
+                        </span>
                       )}
                     </div>
                   </div>
@@ -885,11 +889,10 @@ const Products = () => {
                       </div>
 
                       <p
-                        className={`text-gray-700 text-sm font-normal text-justify ${
-                          expandedDescriptions[product.id]
-                            ? ""
-                            : "line-clamp-3"
-                        }`}
+                        className={`text-gray-700 text-sm font-normal text-justify ${expandedDescriptions[product.id]
+                          ? ""
+                          : "line-clamp-3"
+                          }`}
                       >
                         {product.description}
                       </p>
