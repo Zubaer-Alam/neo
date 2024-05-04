@@ -229,7 +229,8 @@ const EditProduct = () => {
   const [productId, setProductId] = useState(null);
 
   const navigate = useNavigate();
-
+  const [product, setProducts] = useState([]); // State to store products
+  const [productIdToDelete, setProductIdToDelete] = useState(null);
   useEffect(() => {
     const getProductData = async () => {
       try {
@@ -244,9 +245,12 @@ const EditProduct = () => {
           throw new Error('Failed to fetch product');
         }
 
-        const productData = await response.json();
-        console.log(productData)
-        const product = productData[0]; // Assuming only one product is returned
+
+
+        const productsData = await response.json();
+        console.log(productsData, "my pro");
+        setProducts(productsData);
+        
         setTitle(product.title);
         setDescription(product.description);
         setPrice(product.price);
