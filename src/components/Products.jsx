@@ -827,7 +827,7 @@ const Products = () => {
             </Link>
           </div>
 
-          <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-3">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
             {products.length === 0 ? (
               <div className="text-gray-700 font-semibold">
                 No products available
@@ -836,93 +836,79 @@ const Products = () => {
               products.map((product) => (
                 <div
                   key={product.id}
-                  className="border border-gray-200 shadow-lg drop-shadow-sm rounded-xl mt-6 md:px-8 px-4 py-6 relative"
+                  className="bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg border-t border-gray-100"
                 >
-                  <div className="absolute -end-2 -top-[20px]">
-                    <div className="mx-auto my-14 flex justify-start items-center gap-2 relative">
+                  <div className="relative">
+                    <div className="absolute top-2.5 right-0 mt-3 mr-5">
                       {product.status === "rented" ? (
                         <div
-                          className={`show flex items-center cursor-pointer transition-all duration-300 ease-in-out bg-blue-900 px-3.5 py-1 ${showDates[product.id] ? "w-auto" : "w-[80px]"
+                          className={`inline-flex items-center bg-blue-500 text-white text-xs font-semibold uppercase px-3 py-1 rounded-full cursor-pointer transition duration-300 ease-in-out ${showDates[product.id] ? "bg-blue-600" : "bg-blue-500"
                             }`}
                           onClick={() => toggleDates(product.id)}
                         >
                           {showDates[product.id] ? (
-                            <div className="flex gap-2 items-center">
-                              <p className="text-xs text-white">{product.startDate}</p>
-                              <p className="text-xs text-white">to</p>
-                              <p className="text-xs text-white">{product.endDate}</p>
+                            <div className="flex items-center space-x-1">
+                              <span>{product.startDate}</span>
+                              <span className="mx-1">-</span>
+                              <span>{product.endDate}</span>
                             </div>
                           ) : (
-                            <span className="capitalize text-white text-xs font-medium">
-                              {product.status}
-                            </span>
+                            <span>{product.status}</span>
                           )}
                         </div>
                       ) : (
-                        <span className="capitalize text-white bg-blue-900 text-xs font-medium px-3.5 py-1">
+                        <div className="inline-flex items-center bg-green-500 text-white text-xs font-semibold uppercase px-3 py-1 rounded-full">
                           {product.status}
-                        </span>
+                        </div>
                       )}
                     </div>
                   </div>
-
-                  <div className="flex justify-between">
-                    <p className="text-gray-700 text-[16px] font-semibold mt-3">
-                      {product.title}
-                      <span className="bg-gray-100 text-gray-800 border text-xs font-medium ms-2 px-2.5 py-0.5 rounded-full">
-                        {product.price} $
-                      </span>
-                    </p>
-                  </div>
-
-                  <div className="">
-                    <div className="text-sm text-gray-400 font-semibold">
-                      <div className="flex flex-wrap items-center gap-2 my-4">
-                        {product.category.map((category, index) => (
-                          <span
-                            key={index}
-                            className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
-                          >
-                            {category}
-                          </span>
-                        ))}
-                      </div>
-
-                      <p
-                        className={`text-gray-700 text-sm font-normal text-justify ${expandedDescriptions[product.id]
-                          ? ""
-                          : "line-clamp-3"
-                          }`}
-                      >
-                        {product.description}
-                      </p>
-                      {product.description.length > 100 && (
-                        <button
-                          onClick={() => toggleDescription(product.id)}
-                          className="text-teal-500 hover:underline"
+                  <div className="px-4 py-5">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">{product.title}</h3>
+                    <div className="flex items-center mb-4">
+                      <span className="text-2xl font-bold text-gray-700">${product.price}</span>
+                    </div>
+                    <div className="mb-4">
+                      {product.category.map((category, index) => (
+                        <span
+                          key={index}
+                          className="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2 mb-2"
                         >
-                          {expandedDescriptions[product.id]
-                            ? "Show Less"
-                            : "Read More"}
+                          {category}
+                        </span>
+                      ))}
+                    </div>
+                    <p
+                      className={`text-gray-600 text-sm ${expandedDescriptions[product.id] ? "" : "line-clamp-3"
+                        }`}
+                    >
+                      {product.description}
+                    </p>
+                    {product.description.length > 100 && (
+                      <button
+                        onClick={() => toggleDescription(product.id)}
+                        className="text-blue-500 hover:text-blue-600 font-medium mt-2"
+                      >
+                        {expandedDescriptions[product.id] ? "Show Less" : "Read More"}
+                      </button>
+                    )}
+                    <div className="mt-4 flex justify-between items-center">
+                      <div className="text-gray-500 text-xs">
+                        Date posted: {product.createdAt}
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <button
+                          className="text-red-500 hover:text-red-600 focus:outline-none"
+                          onClick={() => handleDeleteClick(product.id)}
+                        >
+                          <FaTrash className="h-4 w-4" />
                         </button>
-                      )}
-                      <div className="">
-                        <div className="flex justify-between md:text-sm text-xs pt-2">
-                          <p>Date posted: {product.createdAt}</p>
-
-                          <div className="flex items-center gap-3">
-                            <FaTrash
-                              className="text-gray-600 cursor-pointer"
-                              onClick={() => handleDeleteClick(product.id)}
-                            />
-                            <div>
-                              <AiFillEdit
-                                onClick={() => handleEditClick(product.id)}
-                                className="text-gray-600 cursor-pointer text-xl"
-                              />
-                            </div>
-                          </div>
-                        </div>
+                        <button
+                          className="text-gray-600 hover:text-gray-800 focus:outline-none"
+                          onClick={() => handleEditClick(product.id)}
+                        >
+                          <AiFillEdit className="h-4 w-4" />
+                        </button>
                       </div>
                     </div>
                   </div>
