@@ -842,7 +842,7 @@ const Products = () => {
                     <div className="absolute top-2.5 right-0 mt-3 mr-5">
                       {product.status === "rented" ? (
                         <div
-                          className={`inline-flex items-center bg-blue-500 text-white text-xs font-semibold uppercase px-3 py-1 rounded-full cursor-pointer transition duration-300 ease-in-out ${showDates[product.id] ? "bg-blue-600" : "bg-blue-500"
+                          className={`inline-flex items-center bg-blue-800 text-white text-xs font-semibold uppercase px-3 py-1 rounded-full cursor-pointer transition duration-300 ease-in-out ${showDates[product.id] ? "bg-blue-600" : "bg-blue-500"
                             }`}
                           onClick={() => toggleDates(product.id)}
                         >
@@ -857,7 +857,7 @@ const Products = () => {
                           )}
                         </div>
                       ) : (
-                        <div className="inline-flex items-center bg-green-500 text-white text-xs font-semibold uppercase px-3 py-1 rounded-full">
+                        <div className="inline-flex items-center bg-green-700 text-white text-xs font-semibold uppercase px-3 py-1 rounded-full">
                           {product.status}
                         </div>
                       )}
