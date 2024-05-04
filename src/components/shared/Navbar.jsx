@@ -127,7 +127,7 @@ const Navbar = () => {
     <div>
       <nav className="flex items-center justify-between flex-wrap bg-teal-600 py-6 lg:px-[65px] px-4">
         <div className="flex gap-4 text-sm items-center flex-shrink-0 text-white mr-6">
-          <Link to="/" className="font-semibold text-xl tracking-tight">
+          <Link to="/" className="font-extralight text-3xl tracking-tight pe-5">
             NEO
           </Link>
           {tokenData ? (
