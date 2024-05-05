@@ -17,7 +17,7 @@ const AllProducts = () => {
           return;
         }
 
-        const response = await     fetch(`${import.meta.env.VITE_SERVER}/products/getAll`, {
+        const response = await fetch(`${import.meta.env.VITE_SERVER}/products/getAll`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -76,9 +76,9 @@ const AllProducts = () => {
                 <Link
                   to={`/allProduct/${product.id}`}
                   key={product.id}
-                  className="bg-white rounded-b-xl shadow-md hover:shadow-lg transition duration-300 border-t-4 border-blue-500"
+                  className="bg-white rounded-b-xl shadow-md hover:shadow-lg transition duration-300 border-t rounded-lg border-blue-500 flex flex-col"
                 >
-                  <div className="px-6 py-4">
+                  <div className="flex-grow px-6 py-4">
                     <div className="font-bold text-xl mb-2 text-gray-800 hover:text-blue-600 transition duration-300">
                       {product.title}
                     </div>
@@ -111,21 +111,13 @@ const AllProducts = () => {
                       id={`description-toggle-${product.id}`}
                       className="hidden"
                     />
-                    {/* <label
-                      htmlFor={`description-toggle-${product.id}`}
-                      className="text-blue-600 cursor-pointer"
-                    >
-                      <span className="block">Read More</span>
-                      <span className="hidden">Show Less</span>
-                    </label> */}
                     <p
-                      className={`text-gray-700 text-base ${product.descriptionExpanded ? "" : "line-clamp-3"
-                        } mb-4`}
+                      className={`text-gray-700 text-base ${product.descriptionExpanded ? "" : "line-clamp-3"} mb-4`}
                     >
                       {product.description}
                     </p>
                   </div>
-                  <div className="px-6 py-4 bg-gray-100">
+                  <div className="px-6 py-4 bg-gray-100 mt-auto">
                     <div className="flex justify-between items-center text-sm text-gray-600">
                       <div className="flex items-center">
                         <svg
