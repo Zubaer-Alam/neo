@@ -76,31 +76,31 @@ const AllProducts = () => {
                 <Link
                   to={`/allProduct/${product.id}`}
                   key={product.id}
-                  className="bg-white rounded-b-xl shadow-md hover:shadow-lg transition duration-300 border-t rounded-lg border-blue-500 flex flex-col"
+                  className="bg-white rounded-b-xl shadow-md hover:shadow-lg transition duration-300 border-t rounded-lg border-blue-700 flex flex-col"
                 >
-                  <div className="flex-grow px-6 py-4">
-                    <div className="font-bold text-xl mb-2 text-gray-800 hover:text-blue-600 transition duration-300">
+                  <div className="flex-grow px-8 py-6">
+                    <div className="font-bold text-lg mb-2 text-gray-800 transition duration-300">
                       {product.title}
                     </div>
-                    <div className="flex flex-wrap items-center gap-2 mb-4">
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
                       {product.category.map((category, index) => (
                         <span
                           key={index}
-                          className="inline-flex items-center rounded-full bg-gray-100 px-3 py-0.5 text-sm font-medium text-gray-800"
+                          className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800"
                         >
                           {category}
                         </span>
                       ))}
                     </div>
-                    <div className="flex justify-between items-center mb-4">
+                    <div className="flex justify-between items-center mb-3">
                       <div className="flex items-center">
-                        <span className="text-gray-600 font-bold text-lg mr-2">Price:</span>
-                        <span className="text-green-600 font-bold text-xl">${product.price}</span>
+                        <span className="text-gray-600 font-bold text-base mr-1">Price:</span>
+                        <span className="text-green-600 font-bold text-lg">${product.price}</span>
                       </div>
                       {product.rent && (
                         <div className="flex items-center">
-                          <span className="text-gray-600 font-bold text-lg mr-2">Rent:</span>
-                          <span className="text-blue-600 font-bold text-xl">
+                          <span className="text-gray-600 font-bold text-base mr-1">Rent:</span>
+                          <span className="text-blue-600 font-bold text-lg">
                             ${product.rent} {product.rent_interval}
                           </span>
                         </div>
@@ -112,17 +112,17 @@ const AllProducts = () => {
                       className="hidden"
                     />
                     <p
-                      className={`text-gray-700 text-base ${product.descriptionExpanded ? "" : "line-clamp-3"} mb-4`}
+                      className={`text-gray-700 text-sm ${product.descriptionExpanded ? "" : "line-clamp-3"} mb-3`}
                     >
                       {product.description}
                     </p>
                   </div>
-                  <div className="px-6 py-4 bg-gray-100 mt-auto">
-                    <div className="flex justify-between items-center text-sm text-gray-600">
+                  <div className="px-8 py-4 bg-gray-100 mt-auto">
+                    <div className="flex justify-between items-center text-xs text-gray-600">
                       <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4 mr-1"
+                          className="h-3.5 w-3.5 mr-1"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -137,7 +137,7 @@ const AllProducts = () => {
                       <div className="flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4 mr-1"
+                          className="h-3.5 w-3.5 mr-1"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
