@@ -12,7 +12,7 @@ const Bought = () => {
   useEffect(() => {
     const fetchBoughtProducts = async () => {
       try {
-        const response = await fetch(`http://162.0.237.97:3000/products/bought`, {
+        const response = await      fetch(`${import.meta.env.VITE_SERVER}//products/bought`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
