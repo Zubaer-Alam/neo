@@ -12,7 +12,7 @@ const Bought = () => {
   useEffect(() => {
     const fetchBoughtProducts = async () => {
       try {
-        const response = await      fetch(`${import.meta.env.VITE_SERVER}//products/bought`, {
+        const response = await      fetch(`${import.meta.env.VITE_SERVER}/products/bought`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const Bought = () => {
                   
                   </div>
 
-                  <p className="text-gray-700 line-clamp-3 w-[500px]">
+                  <p className="text-gray-700 line-clamp-3">
                     {product.description}
                   </p>
 

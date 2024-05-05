@@ -66,7 +66,7 @@ const Borrowed = () => {
                
                   </div>
 
-                  <p className="text-gray-700 line-clamp-3 w-[500px]">
+                  <p className="text-gray-700 line-clamp-3 ">
                     {product.description}
                   </p>
 
