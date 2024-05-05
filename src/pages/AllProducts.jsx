@@ -66,11 +66,7 @@ const AllProducts = () => {
         </ol>
 
         <div className="">
-          <div className="">
-            <p className="text-[22px] text-textDeep font-bold">All Products</p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {isLoading ? (
               <div>Loading...</div>
             ) : products.length === 0 ? (
@@ -80,40 +76,86 @@ const AllProducts = () => {
                 <Link
                   to={`/allProduct/${product.id}`}
                   key={product.id}
-                  className="border border-gray-200 rounded-xl mt-6 px-8 py-6 hover:shadow-xl  hover:border-teal-600 cursor-pointer"
+                  className="bg-white rounded-b-xl shadow-md hover:shadow-lg transition duration-300 border-t-4 border-blue-500"
                 >
-                  <div className="">
-                    <p className="text-gray-700 text-xl font-semibold">
+                  <div className="px-6 py-4">
+                    <div className="font-bold text-xl mb-2 text-gray-800 hover:text-blue-600 transition duration-300">
                       {product.title}
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2 mb-4">
+                      {product.category.map((category, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center rounded-full bg-gray-100 px-3 py-0.5 text-sm font-medium text-gray-800"
+                        >
+                          {category}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex justify-between items-center mb-4">
+                      <div className="flex items-center">
+                        <span className="text-gray-600 font-bold text-lg mr-2">Price:</span>
+                        <span className="text-green-600 font-bold text-xl">${product.price}</span>
+                      </div>
+                      {product.rent && (
+                        <div className="flex items-center">
+                          <span className="text-gray-600 font-bold text-lg mr-2">Rent:</span>
+                          <span className="text-blue-600 font-bold text-xl">
+                            ${product.rent} {product.rent_interval}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <input
+                      type="checkbox"
+                      id={`description-toggle-${product.id}`}
+                      className="hidden"
+                    />
+                    {/* <label
+                      htmlFor={`description-toggle-${product.id}`}
+                      className="text-blue-600 cursor-pointer"
+                    >
+                      <span className="block">Read More</span>
+                      <span className="hidden">Show Less</span>
+                    </label> */}
+                    <p
+                      className={`text-gray-700 text-base ${product.descriptionExpanded ? "" : "line-clamp-3"
+                        } mb-4`}
+                    >
+                      {product.description}
                     </p>
                   </div>
-
-                  <div className="">
-                    <div className="text-sm text-gray-400 font-semibold">
-                      <div className="py-1">
-                        <div className="flex flex-wrap items-center gap-2 my-4">
-                          {product.category.map((category, index) => (
-                            <span
-                              key={index}
-                              className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
-                            >
-                              {category}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="flex gap-1">
-                          <p>
-                            Price: <span>{product.price} $</span>
-                          </p>
-                        </div>
+                  <div className="px-6 py-4 bg-gray-100">
+                    <div className="flex justify-between items-center text-sm text-gray-600">
+                      <div className="flex items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4 mr-1"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>{product.ownerName}</span>
                       </div>
-
-                      <p className="text-gray-700 line-clamp-3 w-[500px]">
-                        {product.description}
-                      </p>
-
-                      <div className="flex justify-between text-sm pt-2">
-                        <p>Date posted: {product.createdAt}</p>
+                      <div className="flex items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4 mr-1"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>{product.createdAt}</span>
                       </div>
                     </div>
                   </div>
@@ -121,10 +163,13 @@ const AllProducts = () => {
               ))
             )}
           </div>
+
         </div>
       </section>
+
     </>
   );
 };
+
 
 export default AllProducts;
